@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>SignUp Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/SignUp.css}" rel="stylesheet">
+</head>
+<body id="body_id">
+	<div class="SignUp_Container">
+		<div class="SignUp_Header SignUp_component">
+			<div class="login_image"></div>
+			<h2>SignUp Page</h2>
+		</div>
+		<div class="SignUp_Form_Container SignUp_component">
+		<span th:text="${existing_user_name_error_message}" th:class="${password_error_display_flag}?error_message:error_message_no_display"></span>
+		<span th:text="${confirm_password_error_message}" th:class="${password_error_display_flag}?error_message:error_message_no_display"></span>
+		<form th:action="@{/addUser}" method="post" th:object="${user}">
+			<table>
+				<tr><h4>
+					<td>Username:</td> 
+					<td><input type="text" th:field="*{username}" placeholder="username" autocomplete="OFF"></td>
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>Password:</td> 
+					<td><input type="password" th:field="*{password}" placeholder="password" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>Confirm Password:</td> 
+					<td><input type="password" th:field="*{confirmpassword}" placeholder="confirmpassword" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('confirmpassword')}" th:errors="*{confirmpassword}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>E-Mail:</td> 
+					<td><input type="text" th:field="*{email}" placeholder="E-mail" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>Contact Number:</td> 
+					<td><input type="text" th:field="*{contactnumber}" placeholder="Contact Number" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('contactnumber')}" th:errors="*{contactnumber}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>Date Of Birth:</td> 
+					<td><input type="date" th:field="*{dateofbirth}" placeholder="Date Of Birth" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('dateofbirth')}" th:errors="*{dateofbirth}" class="error_message_field"></td>
+				</tr>
+				<tr><h4>
+					<td>Address:</td> 
+					<td><textarea type="text" th:field="*{address}" placeholder="Enter your address" autocomplete="OFF" rows="4" cols="25"></textarea>
+				</td> </h4></tr>
+				<tr>
+					<td></td>
+					<td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error_message_field"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="Buttons SignUp_component">
+			<button class="button SignUp_button" type="submit">SignUp</button>
+		</div>
+		</form>
+	</div>
+		<h4 class="login_bottton_line">Already signed UP? then log in here
+			<button class="button SignUp_button">
+			Login
+			<a th:href="@{/login}"></a>
+			</button>
+		</h4>
+	<div class="developer_container">
+		<a href="https://udamksaikarthik.github.io/myPortfolio/">Meet the Developer</a>
+	</div>
+	<script type="text/javascript" th:src="@{/js/signup.js}"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>RPSGame</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/RPSGame.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			RPG Game
+		</div>
+		<div class="right_part_of_Header_container">
+			<a th:href="@{/}" class="logout">Back</a>
+		</div>
+	</div>
+	
+	<div th:class="${clicked}?RPS_container_no_display:RPS_container">
+		<div class="RPS_container_scores">
+			<h4>Your Score: <span th:text="${userScore}"></span></h4>
+			<h4>Computer Score: <span th:text="${computerScore}"></span></h4>
+		</div>
+		<div class="RPS_container_choices">
+		<div class="rock item">
+			<a th:href="@{/apps/RPSGame/{choice}(choice=rock)}"></a>
+		</div>
+		<div class="paper item">
+			<a th:href="@{/apps/RPSGame/{choice}(choice=paper)}"></a>
+		</div>
+		<div class="scissor item">
+			<a th:href="@{/apps/RPSGame/{choice}(choice=scissor)}"></a>
+		</div>
+		</div>
+	</div>
+	
+	<div th:class="${clicked}?RPS_container:RPS_container_no_display">
+		<div class="RPS_container_scores">
+			<h4>Your Score: <span th:text="${userScore}"></span></h4>
+			<h4>Computer Score: <span th:text="${computerScore}"></span></h4>
+		</div>
+		<div class="RPS_container_choices">
+			<div class="UserChoiceClass">
+				<div class="rock item greenBorder" th:if="${userChoice == 'rock'}">
+				
+				</div>
+				<div class="paper item greenBorder" th:if="${userChoice == 'paper'}">
+				
+				</div>
+				<div class="scissor item greenBorder" th:if="${userChoice == 'scissor'}">
+				
+				</div>
+				<h3 th:text="${winnerMessage.userMessage}"></h3>
+			</div>
+			<div class="ComputerChoiceClass">
+				<div class="rock item redBorder" th:if="${computerChoice == 'rock'}">
+				
+				</div>
+				<div class="paper item redBorder" th:if="${computerChoice == 'paper'}">
+				
+				</div>
+				<div class="scissor item redBorder" th:if="${computerChoice == 'scissor'}">
+				
+				</div>
+				<h3 th:text="${winnerMessage.computerMessage}"></h3>
+			</div>
+		</div>
+		<div class="RPS_container_reset">
+			<button>
+				Play Again
+				<a th:href="@{/app/RPSGame/playAgain}"></a>
+			</button>
+			<button>
+				Start Over
+				<a th:href="@{/app/RPSGame/startOver}"></a>
+			</button>
+		</div>
+	</div>
+</body>
+</html>

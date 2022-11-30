@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Expenses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/FullDayPlanner.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			Full Day Planner
+		</div>
+		<div class="right_part_of_Header_container">
+			<a th:href="@{/}" class="logout">Back</a>
+		</div>
+	</div>
+	
+	<div class="full_day_planner_options_container">
+		<div class="new_event_container full_day_planner_option">
+			<div class="logo_new_event logo_size_container"></div>
+			<h4>Add Activity</h4>
+			<a class="event_a_button_class" onclick="addEvent()"></a>
+		</div>
+		<div class="all_event_details_container full_day_planner_option">
+			<div class="logo_all_event_details logo_size_container"></div>
+			<h4>All Activities</h4>
+			<a th:href="@{/apps/24_hour_planner/allActivities}" class="event_a_button_class"></a>
+		</div>
+	</div>
+	
+	<div class="analysis_planner_container">
+		<div class="analysis_planner_child_container">
+			<div class="analysis_planner_header">
+				<div class="logo_analysis_div"></div>
+				<h2>Analysis</h2>
+			</div>
+			<div class="analysis_details_container">
+			
+				<div class="event_type1 event_type_container">
+					<div class="event_type_name_percent_container">
+						<h3 class="event_type_name">Work</h3>
+						<h3 class="event_type_percent" th:text="${workPercentage}+'%'"></h3>
+					</div>
+					<div class="event_type_loader_container">
+						<div class="white_loader_bg"></div>
+						<div class="black_loader_bg" th:style="'width:'+@{${workPercentage}}+'%'"></div>
+					</div>
+				</div>
+				
+				<div class="event_type1 event_type_container">
+					<div class="event_type_name_percent_container">
+						<h3 class="event_type_name">Sleep</h3>
+						<h3 class="event_type_percent" th:text="${sleepPercentage}+'%'"></h3>
+					</div>
+					<div class="event_type_loader_container">
+						<div class="white_loader_bg"></div>
+						<div class="black_loader_bg" th:style="'width:'+@{${sleepPercentage}}+'%'"></div>
+					</div>
+				</div>
+				
+				<div class="event_type1 event_type_container">
+					<div class="event_type_name_percent_container">
+						<h3 class="event_type_name">Exercise</h3>
+						<h3 class="event_type_percent" th:text="${exercisePercentage}+'%'"></h3>
+					</div>
+					<div class="event_type_loader_container">
+						<div class="white_loader_bg"></div>
+						<div class="black_loader_bg" th:style="'width:'+@{${exercisePercentage}}+'%'"></div>
+					</div>
+				</div>
+				
+				<div class="event_type1 event_type_container">
+					<div class="event_type_name_percent_container">
+						<h3 class="event_type_name">Party</h3>
+						<h3 class="event_type_percent" th:text="${partyPercentage}+'%'"></h3>
+					</div>
+					<div class="event_type_loader_container">
+						<div class="white_loader_bg"></div>
+						<div class="black_loader_bg" th:style="'width:'+@{${partyPercentage}}+'%'"></div>
+					</div>
+				</div>
+				
+				<div class="event_type1 event_type_container">
+					<div class="event_type_name_percent_container">
+						<h3 class="event_type_name">Other</h3>
+						<h3 class="event_type_percent" th:text="${otherPercentage}+'%'"></h3>
+					</div>
+					<div class="event_type_loader_container">
+						<div class="white_loader_bg"></div>
+						<div class="black_loader_bg" th:style="'width:'+@{${otherPercentage}}+'%'"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="progress_note">
+		<h3>In Progress! Working on it! Will available soon!</h3>
+	</div>
+	<div id="add_event_div_id" class="add_event_div" th:classappend = "${addActivity_translateY} ? slide : none">
+		<div class="Header_container">
+			<div class="left_part_of_Header_container">
+				Welcome, <span  sec:authentication="name"></span>
+			</div>
+			<div class="middle_part_of_Header_container">
+				Full Day Planner
+			</div>
+			<div class="right_part_of_Header_container">
+				<a class="logout" onclick="closeAddEvent()">Close</a>
+			</div>
+		</div>
+		
+		<div class="add_event_div_container">
+			<div class="add_event_div_header">
+				<div class="logo_new_event logo_size_container add_event_div_log_size_header"></div>
+				<h2>Add Activity</h2>
+			</div>
+			<div class="user_inputs_section">
+				<form th:action="@{/apps/24_hour_planner/addActivity}" method="post">
+					<h4 class="h4_hides_msg" th:classappend="${success_flag} ? success_msg_display : msg_hidden"
+					th:text="${success_message}">
+						
+					</h4>
+					<h4 class="h4_hides_msg" th:classappend="${conflict_error_message_flag} ? conflict_error_message_msg_display : msg_hidden"
+					th:text="${conflict_error_message}">
+						
+					</h4>
+					<table>
+					<tr>
+						<td><label for="startTime">Start Time: </label></td>
+						<td><input type="time" id="startTime" name="startTime" required></td>
+					</tr>
+					<tr>
+						<td><label for="endTime">End Time: </label></td>
+						<td><input type="time" id="endTime" name="endTime" required></td>
+					</tr>
+					<tr>
+						<td><label for="activityType">Activity Type: </label></td>
+						<td><select id="activityType" name="activityType" required>
+							<option value="work">Work</option>
+							<option value="sleep">Sleep</option>
+							<option value="exercise">Exercise</option>
+							<option value="party">Party</option>
+							<option value="other">Other</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label for="activityDesc">Activity Info: </label></td>
+						<td><textarea id="activityDesc" rows="5" name="activityInfo"></textarea></td>
+					</tr>
+					</table>
+					<button type="submit">Add Event</button>
+				</form>
+			</div>
+		</div>
+	
+	</div>
+	<script type="text/javascript" th:src="@{/js/FullDayPlanner.js}"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Expenses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/Expenses.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			Expenses
+		</div>
+		<div class="right_part_of_Header_container">
+			<a th:href="@{/}" class="logout">Back</a>
+		</div>
+	</div>
+	
+	<div class="Apps_container">
+		<div class="Apps_container_shell">
+			<div class="app_container_ app_container">
+				<h2>New Expense</h2>
+				
+				<form th:action="@{/apps/expensesApp/addExpense}" class="form_class" method="post">
+				 <label class="form_common" name="expense_type" for="type">Expense Type:</label>
+					<select name="expense_type" id="type">
+					  <option value="Shopping">Shopping</option>
+					  <option value="Food">Food</option>
+					  <option value="Travel">Travel</option>
+					  <option value="Others">Others</option>
+					</select>
+				 <label class="form_common" for="expense_name">Expense Name:</label>
+				 <input id="expense_name" name="expense_name" type="text" required>	
+				 <label class="form_common" for="expense_amount">Expense Amount:</label>
+				 <input id="expense_amount" name="expense_amount" type="text" required>
+				 <label class="form_common" id="expense_date">Expense Date</label>	
+				 <input id="expense_date" type="date" name="expense_date">
+				 <button class="form_common form_submit_button" type="submit">Add Expense</button>
+				 <button class="form_common form_submit_button">
+				 Edit Expense
+				 <a th:href="@{/apps/expensesApp/editExpense}"></a>
+				 </button> 
+				</form>
+			</div>
+			<div class="app_container_analysis app_container">
+				<h2>Monthly Analysis</h2>
+				<form th:action="@{/apps/expensesApp/fetchDataMonthly}" method="post">
+				<div class="month_analysis_month_and_year_container">
+					<div class="month_analysis_month_and_year">
+					<label for="month_for">Month: </label>
+						<select name="month_Monthly_Analysis" id="month_for">
+							<option th:value="${monthName}" th:text="${monthName}"></option>
+							<option value="JANUARY">JANUARY</option>
+							<option value="FEBRAUARY">FEBRAUARY</option>
+							<option value="MARCH">MARCH</option>
+							<option value="APRIL">APRIL</option>
+							<option value="MAY">MAY</option>
+							<option value="JUNE">JUNE</option>
+							<option value="JULY">JULY</option>
+							<option value="AUGUST">AUGUST</option>
+							<option value="SEPTEMBER">SEPTEMBER</option>
+							<option value="OCTOBER">OCTOBER</option>
+							<option value="NOVEMBER">NOVEMBER</option>
+							<option value="DECEMBER">DECEMBER</option>
+						</select>
+						 
+						 <label for="Year">Year: </label>
+						<input id="Year" th:value="${todayMonthYear}" type="text" name="year_Monthly_Analysis"
+						pattern="[0-9]{4}">
+					</div>
+					<div class="fetchData_container">
+						<button class="fetchData" type="submit">Fetch Data</button>
+					</div>
+				</div>
+				</form>
+				<table>
+					<tr>
+						<th style="font-weight: bold;">Expense Type</th>
+						<th style="font-weight: bold;">Amount</th>
+						<th style="font-weight: bold;">%</th>
+					</tr>
+					<tr>
+						<td>Shopping</td>
+						<td th:text="${monthShoppingAmount}"></td>
+						<td th:text="${monthShoppingPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Food</td>
+						<td th:text="${monthFoodAmount}"></td>
+						<td th:text="${monthFoodPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Travel</td>
+						<td th:text="${monthTravelAmount}"></td>
+						<td th:text="${monthTravelPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Others</td>
+						<td th:text="${monthOtherAmount}"></td>
+						<td th:text="${monthOtherPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td th:text="${monthTotalAmount}"></td>
+						<td th:text="${monthTotalPercentage}"></td>
+					</tr>
+				</table>
+				
+				<div class="circle_container">
+					<div class="outer_circle_container">
+					<div class="outer_circle" 
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${shoppingDegreeValue}}+'deg, white '+@{${shoppingDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${monthShoppingPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Shopping</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${foodDegreeValue}}+'deg, white '+@{${foodDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${monthFoodPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Food</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${travelDegreeValue}}+'deg, white '+@{${travelDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${monthTravelPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Travel</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${othersDegreeValue}}+'deg, white '+@{${othersDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${monthOtherPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Others</h6>
+					</div>
+				</div>
+				
+			</div>
+			<div class="app_container_analysis app_container">
+				<h2>Yearly Analysis</h2>
+				
+				<div class="month_analysis_month_and_year_container">
+					<form th:action="@{/apps/expensesApp/fetchDataYearly}" method="post">
+					<div class="month_analysis_month_and_year">
+						<label for="Year_yearly">Year: </label>
+						<input id="Year_yearly" th:value="${year_Yearly_Analysis}" type="text" name="year_Yearly_Analysis"
+						pattern="[0-9]{4}">
+					</div>
+					<div class="fetchData_container">
+						<button class="fetchData" type="submit">Fetch Data</button>
+					</div>
+					</form>
+				</div>
+				<table>
+					<tr>
+						<th style="font-weight: bold;">Expense Type</th>
+						<th style="font-weight: bold;">Amount</th>
+						<th style="font-weight: bold;">%</th>
+					</tr>
+					<tr>
+						<td>Shopping</td>
+						<td th:text="${yearShoppingAmount}"></td>
+						<td th:text="${yearShoppingPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Food</td>
+						<td th:text="${yearFoodAmount}"></td>
+						<td th:text="${yearFoodPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Travel</td>
+						<td th:text="${yearTravelAmount}"></td>
+						<td th:text="${yearTravelPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Others</td>
+						<td th:text="${yearOtherAmount}"></td>
+						<td th:text="${yearOtherPercentage}"></td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td th:text="${yearTotalAmount}"></td>
+						<td th:text="${yearTotalPercentage}"></td>
+					</tr>
+				</table>
+				
+				<div class="circle_container">
+					<div class="outer_circle_container">
+					<div class="outer_circle" 
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${shoppingYearDegreeValue}}+'deg, white '+@{${shoppingYearDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${yearShoppingPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Shopping</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${foodYearDegreeValue}}+'deg, white '+@{${foodYearDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${yearFoodPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Food</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${travelYearDegreeValue}}+'deg, white '+@{${travelYearDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${yearTravelPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Travel</h6>
+					</div>
+					
+					<div class="outer_circle_container">
+					<div class="outer_circle"
+						th:style="'background-image: conic-gradient(blue 0deg,blue '+@{${othersYearDegreeValue}}+'deg, white '+@{${othersYearDegreeValue}}+'deg, white 360deg)'">
+						<div class="inner_circle">
+							<span th:text="${yearOtherPercentage}+' %'"></span>
+						</div>
+					</div>
+					<h6>Others</h6>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			<div class="app_container_last">
+				<div class="app_container_last_small_sections">
+					<a th:href="@{/apps/expensesApp/getCompareExpenses}">Compare Expenses</a>
+				</div>
+				<div class="app_container_last_small_sections">
+					<a th:href="@{/apps/expensesApp/expenseDetails}">All Expense Details</a>
+				</div>
+				<div class="app_container_last_small_sections">
+					<a th:href="@{#}">Budget Analysis</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

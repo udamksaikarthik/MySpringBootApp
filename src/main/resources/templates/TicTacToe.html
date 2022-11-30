@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>RPSGame</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/TicTacToe.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			TicTacToe
+		</div>
+		<div class="right_part_of_Header_container">
+			<a th:href="@{/}" class="logout">Back</a>
+		</div>
+	</div>
+	
+	<div class="game_container">
+		<div class="game_container_holder">
+			<div class="game_container_holder_row">
+				<div class="block11" th:classappend="${classBlock11}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=11)}"></a>
+					<span th:text="${block11}" th:class="${flagX11}?blue_style:red_style"></span>
+				</div>
+				<div class="block12" th:classappend="${classBlock12}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=12)}"></a>
+					<span th:text="${block12}" th:class="${flagX12}?blue_style:red_style"></span>
+				</div>
+				<div class="block13" th:classappend="${classBlock13}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=13)}"></a>
+					<span th:text="${block13}" th:class="${flagX13}?blue_style:red_style"></span>
+				</div>
+			</div>
+			<div class="game_container_holder_row">
+				<div class="block21" th:classappend="${classBlock21}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=21)}"></a>
+					<span th:text="${block21}" th:class="${flagX21}?blue_style:red_style"></span>
+				</div>
+				<div class="block" th:classappend="${classBlock22}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=22)}"></a>
+					<span th:text="${block22}" th:class="${flagX22}?blue_style:red_style"></span>
+				</div>
+				<div class="block23" th:classappend="${classBlock23}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=23)}"></a>
+					<span th:text="${block23}" th:class="${flagX23}?blue_style:red_style"></span>
+				</div>
+			</div>
+			<div class="game_container_holder_row">
+				<div class="block31" th:classappend="${classBlock31}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=31)}"></a>
+					<span th:text="${block31}" th:class="${flagX31}?blue_style:red_style"></span>
+				</div>
+				<div class="block32" th:classappend="${classBlock32}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=32)}"></a>
+					<span th:text="${block32}" th:class="${flagX32}?blue_style:red_style"></span>
+				</div>
+				<div class="block33" th:classappend="${classBlock33}?WinnerGreen:block">
+					<a th:href="@{/apps/TicTacToeGame/{blockNumber}(blockNumber=33)}"></a>
+					<span th:text="${block33}" th:class="${flagX33}?blue_style:red_style"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="buttons_container">
+		<h2 th:text="${winnerMessage}"></h2>
+	</div>
+	<div class="buttons_container">
+		<a th:href="@{/apps/TicTacToeGame/reset}">Play Again</a>
+	</div>
+</body>
+</html>

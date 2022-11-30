@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Expenses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/AllActivities.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			
+		</div>
+		<div class="middle_part_of_Header_container">
+			All Activities
+		</div>
+		<div class="right_part_of_Header_container">
+			<a class="logout" onclick="closeAddEvent()">Close</a>
+		</div>
+	</div>
+	
+	<div class="all_activities_main_container" id="all_activities_main_container">
+		<div class="all_activities_child_container">
+			<div th:each="activities : ${activitiesList}" class="activity_container" id="activity_container_id">
+				<div id="timer_container_id" class="timer_container">
+					<div class="timer_container_start_time"> <span th:text="${activities.start_time_hours}"></span>:<span th:text="${activities.start_time_mins}"></span></div>
+					-
+					<div class="timer_container_end_time"><span th:text="${activities.end_time_hours}"></span>:<span th:text="${activities.end_time_mins}"></span></div>
+				</div>
+				<div id="activity_type_id" class="activity_type">
+					<h1 th:text="${activities.activity_type}">
+						
+					</h1>
+					<div class="activity_info hidden">
+						<h4>Activity Info: <span th:text="${activities.activity_info}"></span> </h4>
+					</div>
+					<a class="delete_button" th:href="@{'/apps/24_hour_planner/allActivities/delete/' + ${activities.activity_id}}"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" th:src="@{../../js/AllActivities.js}"></script>
+</body>
+</html>

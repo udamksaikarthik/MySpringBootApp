@@ -1,0 +1,144 @@
+*{
+	margin: 0;
+}
+body{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.Header_container{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1em 4em;
+	background-color: #408080;
+}
+.left_part_of_Header_container{
+	width: 10%;
+	font-size: 2em;
+}
+.left_part_of_Header_container span{
+	font-weight: bold;
+}
+.middle_part_of_Header_container{
+	font-size: 4em;
+	font-weight: bold;
+}
+.logout{
+	text-decoration: none;
+	background-color: gray;
+	font-size: 2em;
+	border-radius: 5px;
+	color: white;
+	padding: 0.3em;
+}
+.RPS_container{
+	width: 100%;
+	padding: 2em 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.RPS_container_scores{
+	display: flex;
+	justify-content: space-around;
+}
+.RPS_container_choices{
+	display: flex;
+	justify-content: space-around;
+	padding: 2em;
+}
+.item{
+	width: 10em;
+	height: 10em;
+	margin: 1em;
+	background-color: red;
+	position: relative;
+}
+.rock{
+	background: url("Images/rock.png");
+	background-size: 100%;
+}
+.paper{
+	background: url("Images/paper.png");
+	background-size: 100%;
+}
+.scissor{
+	background: url("Images/scissor.png");
+	background-size: 100%;
+}
+.item{
+	padding: 1em;
+	border-radius: 5px;
+	background-color: #ff8000;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.item a{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.RPS_container_no_display{
+	display: none;
+}
+.RPS_container_reset{
+	display: flex;
+	justify-content: space-around;
+}
+.RPS_container_reset button{
+	border: none;
+	padding: 5px;
+	color: white;
+	background-color: #408080;
+	position: relative; 
+}
+.RPS_container_reset button a{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.greenBorder{
+	border: 3px solid green;
+}
+.redBorder{
+	border: 3px solid red;
+}
+h3{
+	text-align: center;
+}
+@media screen and (max-width: 550px) {
+	body{
+		font-size: 1em;
+	}
+	.Header_container{
+	padding: 0.3em;
+	}
+	.left_part_of_Header_container{
+	font-size: 1em;
+	}
+	.middle_part_of_Header_container{
+	font-size: 2em;
+	}
+	.logout{
+		font-size: 1em;
+		border-radius: 3px;
+		padding: 0.2em;
+	}
+	.RPS_container{
+		padding: 1em 0;
+	}
+	.RPS_container_choices{
+		padding: 1em;
+		flex-direction: column;
+		align-items: center;
+	}
+	.item{
+		width: 10em;
+		height: 5em;
+		margin: 0.5em;
+		background-size: 50%;
+	}
+}

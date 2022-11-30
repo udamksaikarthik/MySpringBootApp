@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Apps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/Apps.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			Apps
+		</div>
+		<div class="right_part_of_Header_container">
+			<form th:action="@{/doLogout}" method="post">
+				<button type="submit" class="logout">Logout</button>	
+			</form>
+		</div>
+	</div>
+	
+	<div class="Apps_container" id="apps_container_id">
+		<div class="Apps_container_shell">
+		<div class="app_container_ app_container">
+			<a th:href="@{/apps/expensesApp}">Expenses</a>
+		</div>
+		<div class="app_container_ app_container">
+			<a th:href="@{/apps/24_hour_planner}">24 - Hour Planner</a>
+		</div>
+		<div class="app_container_ app_container">
+			<a th:href="@{/apps/TicTacToeGame}">TicTacToe</a>
+		</div>
+		<div class="app_container_ app_container">
+			<a th:href="@{/apps/RPSGame}">Rock Paper Scissors</a>
+		</div>
+		<div class="app_container_ app_container">
+			<a th:href="@{https://udamksaikarthik.github.io/myPortfolio/}">Developer Portfolio</a>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/Apps.js}"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/Home.css}" rel="stylesheet">
+</head>
+<body>
+	
+	<div id="loader_div_id" class="loader_div">
+		<h2>Loading&nbsp <span class="dot_one">.</span>&nbsp <span class="dot_second">.</span>&nbsp <span  class="dot_third">.</span></h2>
+	</div>
+	
+	<div class="Login_Container">
+		<div class="Login_Header login_component">
+			<div class="login_image skeleton"></div>
+			<h2>Login Page</h2>
+		</div>
+		<div class="Login_Form_Container login_component">
+			<h4 th:if="${param.error}" class="error_message_field_display">Invalid Username and Password!</h4>
+			<h4 th:if="${param.logout}" class="success_message">You Have Been Logged Out!</h4>
+			<span th:text="${no_error_message}" th:class="${success_display_flag}?success_message:success_message_no_display"></span>	
+		<form th:action="@{/login}" method="post">
+			<table>
+				<tr><h4>
+					<td>Username:</td> 
+					<td><input type="text" name="username" placeholder="username" autocomplete="OFF"></td> 
+				</h4></tr>
+				<tr><h4>
+					<td>Password:</td> 
+					<td><input type="password" name="password" placeholder="password" autocomplete="OFF"></td> 
+				</h4></tr>
+			</table>
+		</div>
+		<div class="Buttons login_component">
+			<button class="button login_button" type="submit">Login</button>
+			<button class="button signup_button">
+			SignUp
+			<a th:href="@{/signUp}"></a>
+			</button>
+		</div>
+		</form>
+		<div class="developer_container">
+			<a href="https://udamksaikarthik.github.io/myPortfolio/">Meet the Developer</a>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/login.js}"></script>
+</body>
+</html>

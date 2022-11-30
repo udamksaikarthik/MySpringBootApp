@@ -1,0 +1,132 @@
+*{
+	margin: 0;
+}
+body{
+	width: 100vw;
+	background: linear-gradient(45deg, #ff8000, #408080,#ff8000);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	flex-direction: column;
+}
+.SignUp_Container{
+	background-color: #ff8000;
+	display: flex;
+	flex-direction:column;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+.SignUp_component{
+	padding: 1em;
+}
+input,a{
+	font-size: 1em;
+}
+.SignUp_Header{
+	display: flex;
+	width: 60%;
+	justify-content: space-around;
+	align-items: center;
+}
+.login_image{
+	height: 3em;
+	width: 3em;
+	background: url("Images/add-user-symbol.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.SignUp_Form_Container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+td{
+	padding: 0.2em;
+}
+.Buttons{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+button{
+	padding: 0.5em;
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+	font-size: 1em;
+	font-weight: bold;
+	border: 2px solid transparent;
+	cursor: pointer;
+}
+button:hover{
+	border: 2px solid white;
+}
+.SignUp_button{
+	background-color: #0080c0;
+	position: relative;;
+}
+.error_message{
+	width: 100%;
+	text-align: center;
+	background-color: #cc0000;
+	color: white;
+	padding: 0.2em;
+}
+.error_message_field{
+	text-align: center;
+	background-color: #cc0000;
+	color: white;
+	padding: 0.2em;
+}
+.success_message{
+	width: 100%;
+	text-align: center;
+	background-color: #69e749;
+	color: white;
+	padding: 0.2em;
+}
+.success_message_no_display{
+	display: none;
+}
+.error_message_no_display{
+	display: none;
+}
+a{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.developer_container{
+	border: 2px dashed black;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	justify-content: center;
+	margin-top: 5px;
+}
+.developer_container a{
+	position: static;
+	text-decoration: none;
+	color: black;
+}
+.login_bottton_line{
+	margin-top: 5px;
+}
+@media screen and (max-width: 550px) {
+	body{
+		font-size: 1em;
+	}
+	.Login_Container{
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 0.3em 0;
+}
+}

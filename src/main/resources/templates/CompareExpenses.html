@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Compare Expenses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link th:href="@{/CSS/CompareExpenses.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="Header_container">
+		<div class="left_part_of_Header_container">
+			Welcome, <span  sec:authentication="name"></span>
+		</div>
+		<div class="middle_part_of_Header_container">
+			Compare Expenses
+		</div>
+		<div class="right_part_of_Header_container">
+			<a th:href="@{/apps/expensesApp}" class="logout">Back</a>
+		</div>
+	</div>
+	
+	<div class="compare_sheets_container">
+		<div class="monthly_compare_sheet_container common_sheet_container">
+			<div class="common_sheet_container_header">
+				<h2>Monthly Comparison</h2>
+			<form th:action="@{/apps/expensesApp/compareMonthly}" method="post">
+				<table>
+					<tr>
+						<th>Color</th>
+						<th>Month</th>
+						<th>Year</th>
+					</tr>
+					<tr>
+						<td>Blue</td>
+						<td>
+							<select name="month_compare_blue_month_data" id="month_for" required>
+								<option th:value="${blueMonthlyMonthValue}" th:text="${blueMonthlyMonthValue}"></option>
+								<option value="JANUARY">JANUARY</option>
+								<option value="FEBRAUARY">FEBRAUARY</option>
+								<option value="MARCH">MARCH</option>
+								<option value="APRIL">APRIL</option>
+								<option value="MAY">MAY</option>
+								<option value="JUNE">JUNE</option>
+								<option value="JULY">JULY</option>
+								<option value="AUGUST">AUGUST</option>
+								<option value="SEPTEMBER">SEPTEMBER</option>
+								<option value="OCTOBER">OCTOBER</option>
+								<option value="NOVEMBER">NOVEMBER</option>
+								<option value="DECEMBER">DECEMBER</option>
+							</select>
+						</td>
+						<td>
+							<input th:value="${blueMonthlyYearValue}" name="month_compare_blue_year_data" type="text" placeholder="YYYY" pattern="[0-9]{4}" required>
+						</td>
+					</tr>
+					<tr>
+						<td>Red</td>
+						<td>
+							<select name="month_compare_red_month_data" id="month_for" required>
+								<option th:value="${redMonthlyMonthValue}" th:text="${redMonthlyMonthValue}"></option>
+								<option value="JANUARY">JANUARY</option>
+								<option value="FEBRAUARY">FEBRAUARY</option>
+								<option value="MARCH">MARCH</option>
+								<option value="APRIL">APRIL</option>
+								<option value="MAY">MAY</option>
+								<option value="JUNE">JUNE</option>
+								<option value="JULY">JULY</option>
+								<option value="AUGUST">AUGUST</option>
+								<option value="SEPTEMBER">SEPTEMBER</option>
+								<option value="OCTOBER">OCTOBER</option>
+								<option value="NOVEMBER">NOVEMBER</option>
+								<option value="DECEMBER">DECEMBER</option>
+							</select>
+						</td>
+						<td>
+							<input th:value="${redMonthlyYearValue}" name="month_compare_red_year_data" type="text" placeholder="YYYY" pattern="[0-9]{4}" required>
+						</td>
+					</tr>
+				</table>
+				<button type="submit">Compare</button>
+			</form>
+			</div>
+			
+			<div class="graph_container">
+				<h4 class="month_graph_0">0</h4>
+				<h4 class="month_graph_25">25</h4>
+				<h4 class="month_graph_50">50</h4>
+				<h4 class="month_graph_75">75</h4>
+				<h4 class="month_graph_100">100</h4>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${month_shopping_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${month_shopping_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${month_shopping_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${month_shopping_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_shopping grpah_item_entity">Shopping</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${month_food_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${month_food_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${month_food_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${month_food_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_food grpah_item_entity">Food</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${month_travel_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${month_travel_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${month_travel_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${month_travel_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_travel grpah_item_entity">Travel</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${month_others_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${month_others_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${month_others_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${month_others_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_others grpah_item_entity">Others</h4>
+				</div>
+			</div>
+			
+		</div>
+		<div class="yearly_compare_sheet_container common_sheet_container">
+			<div class="common_sheet_container_header">
+				<h2>Yearly Comparison</h2>
+			<form th:action="@{/apps/expensesApp/compareYearly}" method="post">
+				<table>
+					<tr>
+						<th>Color</th>
+						<th>Year</th>
+					</tr>
+					<tr>
+						<td>Blue</td>
+						<td>
+							<input th:value="${blue_year_yearly_value}" name="blueYearlyYearValue" type="text" placeholder="YYYY" pattern="[0-9]{4}" required>
+						</td>
+					</tr>
+					<tr>
+						<td>Red</td>
+						<td>
+							<input th:value="${red_year_yearly_value}" name="redYearlyYearValue" type="text" placeholder="YYYY" pattern="[0-9]{4}" required>
+						</td>
+					</tr>
+				</table>
+				<button type="submit">Compare</button>
+			</form>
+			</div>
+			
+			<div class="graph_container">
+				<h4 class="month_graph_0">0</h4>
+				<h4 class="month_graph_25">25</h4>
+				<h4 class="month_graph_50">50</h4>
+				<h4 class="month_graph_75">75</h4>
+				<h4 class="month_graph_100">100</h4>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${year_shopping_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${year_shopping_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${year_shopping_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${year_shopping_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_shopping grpah_item_entity">Shopping</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${year_food_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${year_food_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${year_food_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${year_food_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_food grpah_item_entity">Food</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${year_travel_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${year_travel_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${year_travel_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${year_travel_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_travel grpah_item_entity">Travel</h4>
+				</div>
+				<div class="common_graph_block">
+					<div th:style="'height: '+@{${year_others_blue_percentage}}+'%;'" class="common_bar month_blue_bar">
+						<span  th:text="${year_others_blue_percentage}"></span>
+					</div>
+					<div th:style="'height: '+@{${year_others_red_percentage}}+'%;'" class="common_bar month_red_bar">
+						<span  th:text="${year_others_red_percentage}"></span>
+					</div>
+					<h4 class="month_graph_others grpah_item_entity">Others</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

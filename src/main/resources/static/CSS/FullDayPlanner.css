@@ -1,0 +1,272 @@
+*{
+	margin: 0;
+}
+body{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	/* background-color: #9A2433; */
+}
+.Header_container{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0em 4em;
+	background-color: #408080;
+	height: 10%;
+}
+.left_part_of_Header_container{
+	width: 10%;
+	font-size: 2em;
+}
+.left_part_of_Header_container span{
+	font-weight: bold;
+}
+.middle_part_of_Header_container{
+	font-size: 4em;
+	font-weight: bold;
+}
+.progress_note{
+	visibility: hidden;
+	position: absolute;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.progress_note h3{
+	color: white;
+}
+.logout{
+	text-decoration: none;
+	background-color: gray;
+	font-size: 2em;
+	border-radius: 5px;
+	color: white;
+	padding: 0.3em;
+	cursor: pointer;
+}
+.full_day_planner_options_container{
+	height: 30%;
+	width: 100%;
+	display: flex;
+}
+.full_day_planner_option{
+	width: 49.8%;
+	height: 99.8%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin: 0.1%;
+	position: relative;
+}
+.event_a_button_class{
+	cursor: pointer;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+.new_event_container{
+	background-color: #99B898;
+}
+.all_event_details_container{
+	background-color: #E84A5F;
+}
+.logo_new_event{
+	background: url("Images/addActivity.png");
+}
+.logo_all_event_details{
+	background: url("Images/plannedSchedule.png");
+}
+.logo_size_container{
+	height: 50%;
+	width: 30%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.analysis_planner_container{
+	width: 99.8%;
+	height: 59.8%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #EDE574;
+	margin: 0.1%;
+}
+.analysis_planner_child_container{
+	width: 80%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0.1%;
+}
+.analysis_planner_header{
+	height: 10%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.logo_analysis_div{
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: url("Images/analysis.png");
+	height: 100%;
+	width: 10%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.analysis_details_container{
+	height: 90%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.event_type_container{
+	width: 100%;
+	height: 18%;
+}
+.event_type_name_percent_container{
+	width: 100%;
+	height: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.event_type_loader_container{
+	position: relative;
+	width: 100%;
+	height: 50%;
+}
+.white_loader_bg,.black_loader_bg{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 30%;
+	border-radius: 5px;
+}
+.white_loader_bg{
+	width: 100%;
+	background-color: white;
+}
+.black_loader_bg{
+	background-color: black;
+}
+.add_event_div{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #99B898;
+	transform: translateY(-100%);
+	transition: 0.75s ease-in-out;
+}
+.add_event_div.slide{
+	transform: translateY(0%);
+}
+.add_event_div_container{
+	height: 90%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.add_event_div_header{
+	position: relative;
+	height: 9%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 2px solid black;
+}
+.add_event_div_log_size_header{
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.user_inputs_section{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.user_inputs_section form{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.user_inputs_section form div{
+	display: flex;
+	align-items: center;
+}
+td{
+	font-size: 1.5em;
+	padding: 1em 0;
+}
+td input{
+	font-size: 1.5em;
+}
+.h4_hides_msg{
+	display: none;
+}
+.msg_hidden{
+	display: none;
+}
+.success_msg_display{
+	display: block;
+	color: green;
+	border: 2px solid green;
+}
+.conflict_error_message_msg_display{
+	display: block;
+	color: red;
+	border: 2px solid red;
+}
+@media screen and (max-width: 550px) {
+	body{
+		font-size: 1em;
+	}
+	.Header_container{
+	padding: 0 0.3em;
+	}
+	.left_part_of_Header_container{
+	font-size: 1em;
+	}
+	.middle_part_of_Header_container{
+	font-size: 2em;
+	}
+	.logout{
+		font-size: 1em;
+		border-radius: 3px;
+		padding: 0.2em;
+	}
+	.logo_analysis_div{
+		margin-right: 5px;
+	}
+	td{
+		font-size: 1.2em;
+	}
+	td input{
+		font-size: 1.2em;
+	}
+}
